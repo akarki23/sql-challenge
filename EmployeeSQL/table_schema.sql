@@ -1,12 +1,9 @@
--- Drop tables if they exist
-DROP TABLE IF EXISTS departments;
-DROP TABLE IF EXISTS dept_manager;
-DROP TABLE IF EXISTS dept_emp;
-DROP TABLE IF EXISTS employees;
-DROP TABLE IF EXISTS salaries;
-DROP TABLE IF EXISTS titles;
+-- Table Schema using pgAdmin --
 
--- Create our empty tables
+-- Drop tables if they exist
+DROP TABLE IF EXISTS departments, dept_manager, dept_emp, employees, salaries, titles CASCADE;
+
+-- Create our empty tables --
 
 -- Create departments table
 CREATE TABLE "departments" (
@@ -60,7 +57,9 @@ CREATE TABLE "titles" (
     "to_date" DATE NOT NULL
 );
 
--- Adding foreign key constraints on emp_no & dept_no columns after creating our tables
+-- IMPORT CSV FILES BEFORE PROCEEDING --
+
+-- Adding foreign key constraints on emp_no & dept_no columns after creating tables and importing CSV files --
 
 -- Department employee table
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
@@ -82,7 +81,7 @@ REFERENCES "employees" ("emp_no");
 ALTER TABLE "titles" ADD CONSTRAINT "fk_titles_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
--- Query each table in order to confirm the data ***IMPORT CSV FILES FIRST***
+-- Query each table in order to confirm the data --
 
 -- Display departments data
 SELECT *
